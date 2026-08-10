@@ -1,0 +1,378 @@
+{
+  "authorization": {
+    "execution_payload": {
+      "broadcast_sha256": "d0ff411a51d7e9303ecf88c4c2083691b25c4b926195880e904a26878d7f8066",
+      "canonical": {
+        "abi_sha256": "8a2355238111520c2d9fea306ee11e495205ad2c9ed6b9f1891666379127db7c",
+        "chain_id": "84532",
+        "contract_address": "0x8bab6d1b75f19e9ed9fce8b9bd338844ff79ae27",
+        "function_args": "[0]",
+        "function_name": "setUserEMode",
+        "function_signature": "setUserEMode(uint8)",
+        "value": "0"
+      },
+      "commitment_match": true,
+      "sha256": "d0ff411a51d7e9303ecf88c4c2083691b25c4b926195880e904a26878d7f8066"
+    },
+    "freshness_check": {
+      "checks": [
+        {
+          "name": "prebroadcast_fresh_aave.user_emode",
+          "passed": true,
+          "reason": "State snapshot drifted at aave.user_emode: expected=1; observed=1."
+        }
+      ],
+      "observed_emode": 1,
+      "passed": true
+    },
+    "independent_semantic_deviations": [],
+    "intent_assurance": {
+      "checks": [
+        {
+          "name": "intent_chain",
+          "passed": true,
+          "reason": "Proposal chain_id=84532 does not match mandate chain_id=84532."
+        },
+        {
+          "name": "intent_action",
+          "passed": true,
+          "reason": "Proposal action=contract_call does not match mandate action=contract_call."
+        },
+        {
+          "name": "intent_target_shape",
+          "passed": true,
+          "reason": "Proposal target must be a valid 20-byte EVM address."
+        },
+        {
+          "name": "intent_target",
+          "passed": true,
+          "reason": "Proposal target differs from the mandated recipient/contract."
+        },
+        {
+          "name": "intent_function",
+          "passed": true,
+          "reason": "Proposal function 'setUserEMode(uint8)' does not match mandated function 'setUserEMode(uint8)'."
+        },
+        {
+          "name": "intent_native_value_valid",
+          "passed": true,
+          "reason": "Contract-call native value must be finite and non-negative."
+        },
+        {
+          "name": "intent_arguments",
+          "passed": true,
+          "reason": "Proposal arguments (0,) do not match mandated arguments (0,)."
+        },
+        {
+          "name": "intent_native_value",
+          "passed": true,
+          "reason": "Proposal native value 0 does not match mandated native value 0."
+        },
+        {
+          "name": "intent_forbidden_effects",
+          "passed": true,
+          "reason": "Proposal does not contain a forbidden semantic effect."
+        }
+      ],
+      "passed": true
+    },
+    "precondition_checks": [
+      {
+        "name": "pre_0_aave.user_emode",
+        "passed": true,
+        "reason": "pre condition failed: aave.user_emode eq 1; observed=1."
+      }
+    ]
+  },
+  "broadcast_attempted": true,
+  "context": {
+    "account": "0x4c3BFdf14C3E60ff736Df20f13B40923BF1cbab5",
+    "agent": {},
+    "execution_control": {
+      "authenticated_user_signature": false,
+      "broadcast_allowed": true,
+      "control_authority": "local_cli_operator",
+      "mode": "autonomous",
+      "reason": "Autonomous mode permits broadcast after all deterministic gates pass.",
+      "requires_human_confirmation": false
+    },
+    "execution_identity": {
+      "checks": [
+        {
+          "name": "execution_identity_integration_type",
+          "passed": true,
+          "reason": "Execution identity is not the supported KeeperHub web3 wallet profile."
+        },
+        {
+          "name": "execution_identity_single_wallet",
+          "passed": true,
+          "reason": "Exactly one KeeperHub web3 integration is required for autonomous execution."
+        },
+        {
+          "name": "execution_identity_wallet_address",
+          "passed": true,
+          "reason": "KeeperHub integration address and walletAddress differ or are unavailable."
+        },
+        {
+          "name": "execution_identity_no_safe_sender",
+          "passed": true,
+          "reason": "Safe/active-Sender configuration is unsupported by the current verified profile."
+        }
+      ],
+      "profile": "keeperhub_direct_web3_eoa_v1",
+      "safe_or_active_sender_supported": false,
+      "supported": true
+    },
+    "execution_mode": "autonomous",
+    "intent_preview": {
+      "action": "setUserEMode(uint8)",
+      "authorization_status": "UNVERIFIED_CANDIDATE",
+      "changes": [
+        {
+          "after": 0,
+          "before": 1,
+          "field": "Aave E-Mode category"
+        }
+      ],
+      "collateral_settings": "unchanged by this candidate action",
+      "execution_mode": "autonomous",
+      "native_eth": "0",
+      "network": "Base Sepolia",
+      "protocol": "Aave V3",
+      "semantic_effects": [
+        "aave.user_emode"
+      ],
+      "target_contract": "0x8bAB6d1b75f19e9eD9fCe8b9BD338844fF79aE27",
+      "token_transfer": "none",
+      "user_intent": "Set my Aave E-Mode category exactly to 0. Do not change collateral settings. Attach no native ETH."
+    },
+    "keeperhub_mcp_connected": true,
+    "keeperhub_tool_count": 35,
+    "mode": "safe",
+    "operation_journal": {
+      "idempotency_key_persisted_before_broadcast": true,
+      "operation_id": "op_4d6a4dcebaa54547b27988b6cd0bc5ad",
+      "payload_sha256": "d0ff411a51d7e9303ecf88c4c2083691b25c4b926195880e904a26878d7f8066",
+      "state_after_verification": "VERIFIED",
+      "state_before_execution": "PREPARED"
+    },
+    "verification_profile": "authorization_to_execution_v1"
+  },
+  "created_at": "2026-08-09T12:11:34.006349+00:00",
+  "final_reason": "",
+  "final_status": "VERIFIED",
+  "intent": {
+    "commitment": "7b4c9001207b18fdb8d48d41a964fe3bc0028d206086c7d5722089cbbb1cc559",
+    "ir": {
+      "abi_hash": "8a2355238111520c2d9fea306ee11e495205ad2c9ed6b9f1891666379127db7c",
+      "action": {
+        "arguments": [
+          0
+        ],
+        "function_signature": "setUserEMode(uint8)",
+        "native_value": "0",
+        "protocol": "aave",
+        "target": "0x8bAB6d1b75f19e9eD9fCe8b9BD338844fF79aE27"
+      },
+      "chain_id": "84532",
+      "compiler_version": "proofpilot-mandate-compiler/1",
+      "deadline": null,
+      "intent_id": "competition-demo-aave-emode-1786277494",
+      "invariants": [],
+      "metadata": {
+        "binding_profile": "aave_emode",
+        "forbidden_effects": [
+          "aave.collateral_configuration"
+        ]
+      },
+      "nonce": 1786277494,
+      "parent_delegation_hash": "2dc54eeab365f0e4657b9d71aa0b4947d59d90598867e83cd4734e235c9e93d4",
+      "postconditions": [
+        {
+          "operator": "eq",
+          "path": "aave.user_emode",
+          "value": 0
+        }
+      ],
+      "preconditions": [],
+      "source_text": "Set my Aave E-Mode category exactly to 0. Do not change collateral settings. Attach no native ETH.",
+      "source_text_hash": "51a3741ab370c0110aed55fd4c94bfa0cf64c424ce9fb7dbe47d7d6c07041b0d"
+    },
+    "source_text": "Set my Aave E-Mode category exactly to 0. Do not change collateral settings. Attach no native ETH.",
+    "source_text_sha256": "51a3741ab370c0110aed55fd4c94bfa0cf64c424ce9fb7dbe47d7d6c07041b0d"
+  },
+  "keeperhub": {
+    "execution": {
+      "execution_id": "52wm27yt40m6kk6zol6wk",
+      "status": "completed",
+      "submission": {
+        "execution_id": "52wm27yt40m6kk6zol6wk",
+        "idempotency_key": "proofpilot-op-505579c9-fa98-45ba-8ce7-d45792bb7e96",
+        "status": "completed"
+      },
+      "terminal_check": {
+        "checks": [
+          {
+            "name": "execution_completed",
+            "passed": true,
+            "reason": "Execution status is not completed."
+          },
+          {
+            "name": "transaction_hash",
+            "passed": true,
+            "reason": "Transaction hash is missing."
+          },
+          {
+            "name": "transaction_link",
+            "passed": true,
+            "reason": "Transaction link is missing."
+          },
+          {
+            "name": "receipt_evidence",
+            "passed": true,
+            "reason": "Enriched receipt evidence is present."
+          },
+          {
+            "name": "receipt_0_verified",
+            "passed": true,
+            "reason": "Receipt is not cryptographically/chain verified by the execution layer."
+          },
+          {
+            "name": "receipt_0_status",
+            "passed": true,
+            "reason": "receiptStatus='success'; expected 'success'."
+          }
+        ],
+        "passed": true
+      },
+      "transaction_hash": "0x2f42aefeed93e25df81b90a4e56b08698ffaf407f0f8ae7a6c970157a3a64780",
+      "transaction_link": "https://sepolia.basescan.org/tx/0x2f42aefeed93e25df81b90a4e56b08698ffaf407f0f8ae7a6c970157a3a64780"
+    },
+    "simulation": {
+      "from": "0x4c3bfdf14c3e60ff736df20f13b40923bf1cbab5",
+      "gasEstimate": "46317",
+      "simulatedReturnValue": null,
+      "status": "simulated",
+      "success": true,
+      "to": "0x8bab6d1b75f19e9ed9fce8b9bd338844ff79ae27",
+      "value": "0",
+      "wouldRevert": false
+    }
+  },
+  "network": {
+    "chain_id": "84532",
+    "name": "Base Sepolia"
+  },
+  "pre_state": {
+    "aave": {
+      "user_emode": 1
+    }
+  },
+  "proposal": {
+    "action": {
+      "action": "contract_call",
+      "arguments": [
+        0
+      ],
+      "chain_id": "84532",
+      "function_signature": "setUserEMode(uint8)",
+      "native_value": "0",
+      "target": "0x8bAB6d1b75f19e9eD9fCe8b9BD338844fF79aE27"
+    },
+    "sha256": "a80241044986dc398d28e23ff3801a43f70465aa5a26cbd66c332bb53ab8cef4"
+  },
+  "provenance": {
+    "compiler_version": "proofpilot-mandate-compiler/1",
+    "intent_commitment": "7b4c9001207b18fdb8d48d41a964fe3bc0028d206086c7d5722089cbbb1cc559",
+    "write_path": "KeeperHub MCP execute_contract_call"
+  },
+  "schema": "proofpilot.execution-trace.v2",
+  "sha256": "4093790c40702e4d61e263f0295830583b178f6a5576826c3da3f335408411cd",
+  "testnet_only": true,
+  "trace_id": "pp_ca10eb76c5444b43bd307c67e2b958b8",
+  "verification": {
+    "execution_binding": {
+      "checks": [
+        {
+          "name": "execution_transaction_present",
+          "passed": true,
+          "reason": "Independent read layer could not fetch the broadcast transaction."
+        },
+        {
+          "name": "execution_envelope_account_binding",
+          "passed": true,
+          "reason": "KeeperHub execution envelope does not contain the expected execution account."
+        },
+        {
+          "name": "execution_envelope_target_binding",
+          "passed": true,
+          "reason": "KeeperHub execution envelope does not contain the authorized Aave Pool target."
+        },
+        {
+          "name": "execution_outer_native_value",
+          "passed": true,
+          "reason": "Outer KeeperHub execution transaction unexpectedly carries native value."
+        },
+        {
+          "name": "execution_identity_matches_simulation",
+          "passed": true,
+          "reason": "Simulation sender and intended execution account differ."
+        },
+        {
+          "name": "aave_user_emode_event_binding",
+          "passed": true,
+          "reason": "Aave Pool did not emit UserEModeSet for the expected user/category."
+        }
+      ],
+      "full_call_trace_verified": false,
+      "note": "Independent public RPC does not expose debug_traceTransaction; binding uses KeeperHub envelope account/target evidence plus Aave UserEModeSet event identity/effect.",
+      "outer_transaction": {
+        "from": "0xdcf4bac4bd805948168ff63483bc493894a29613",
+        "to": "0x5af5194b4b0909eb978e3cf1e25333852277f07d",
+        "value": "0x0"
+      },
+      "passed": true,
+      "profile": "keeperhub_envelope_plus_aave_effect_v1"
+    },
+    "independent_receipt": {
+      "block_hash": "0x64803d59e037ce8695a3a4a246691bc1b56706b681d4b4187a029aa0a3c2f7de",
+      "block_number": "0x2b287d1",
+      "checks": [
+        {
+          "name": "independent_receipt_hash",
+          "passed": true,
+          "reason": "Independent receipt transactionHash does not match KeeperHub evidence."
+        },
+        {
+          "name": "independent_receipt_success",
+          "passed": true,
+          "reason": "Independent receipt status='0x1'; expected successful EVM status."
+        },
+        {
+          "name": "independent_receipt_block",
+          "passed": true,
+          "reason": "Independent receipt is missing block inclusion evidence."
+        }
+      ],
+      "passed": true,
+      "status": "0x1",
+      "transaction_hash": "0x2f42aefeed93e25df81b90a4e56b08698ffaf407f0f8ae7a6c970157a3a64780"
+    },
+    "level": "L2_EXECUTION_EFFECT_VERIFIED",
+    "post_state": {
+      "aave": {
+        "user_emode": 0
+      }
+    },
+    "postcondition_check": {
+      "checks": [
+        {
+          "name": "post_0_aave.user_emode",
+          "passed": true,
+          "reason": "post condition failed: aave.user_emode eq 0; observed=0."
+        }
+      ],
+      "passed": true
+    }
+  }
+}

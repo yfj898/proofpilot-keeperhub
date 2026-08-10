@@ -1,0 +1,103 @@
+{
+  "account_present": true,
+  "agent_probe": {
+    "model": "deepseek-ai/deepseek-v4-flash-0731",
+    "passed": true,
+    "performed": true,
+    "prompt_sha256": "7e7ff89e2259c5c3bd0243c47270444087fe825d8aa54d94b5b276c9987efde6",
+    "proposal_function": "setUserEMode(uint8)"
+  },
+  "checks": [
+    {
+      "detail": "Organization-scoped KeeperHub credential is configured.",
+      "name": "keeperhub_api_key",
+      "status": "PASS"
+    },
+    {
+      "detail": "Proposal-agent credential is configured.",
+      "name": "agent_api_key",
+      "status": "PASS"
+    },
+    {
+      "detail": "https://app.keeperhub.com/mcp",
+      "name": "official_keeperhub_endpoint",
+      "status": "PASS"
+    },
+    {
+      "detail": "HTTP 200; MCP 2025-11-25; tools=35; missing=[]",
+      "name": "keeperhub_mcp",
+      "status": "PASS"
+    },
+    {
+      "detail": "EVM execution address is available.",
+      "name": "wallet_integration",
+      "status": "PASS"
+    },
+    {
+      "detail": "Direct KeeperHub web3 EOA profile verified; Safe/active-Sender execution remains intentionally unsupported.",
+      "name": "execution_identity_profile",
+      "status": "PASS"
+    },
+    {
+      "detail": "Base Sepolia (84532) is present and marked stable in live KeeperHub action schemas.",
+      "name": "keeperhub_chain_schema",
+      "status": "PASS"
+    },
+    {
+      "detail": "Informational KeeperHub Aave V3 catalog: 7 actions (aave-v3/borrow, aave-v3/get-user-account-data, aave-v3/get-user-reserve-data, aave-v3/repay, aave-v3/set-collateral, aave-v3/supply, aave-v3/withdraw). The Base Sepolia E-Mode demo does NOT use this protocol plugin; it uses generic execute_contract_call.",
+      "name": "keeperhub_aave_catalog",
+      "status": "PASS"
+    },
+    {
+      "detail": "chain_id=84532",
+      "name": "independent_base_rpc",
+      "status": "PASS"
+    },
+    {
+      "detail": "wallet native balance=0.015 ETH",
+      "name": "wallet_native_gas",
+      "status": "PASS"
+    },
+    {
+      "detail": "Aave Pool code present; current E-Mode=0",
+      "name": "aave_readiness",
+      "status": "PASS"
+    },
+    {
+      "detail": "model=deepseek-ai/deepseek-v4-flash-0731; proposed=setUserEMode(uint8); no KeeperHub tool was invoked by the model",
+      "name": "agent_live_probe",
+      "status": "PASS"
+    },
+    {
+      "detail": "Only read-only KeeperHub discovery tools were invoked; no simulation or execution tool was called.",
+      "name": "doctor_read_only_surface",
+      "status": "PASS"
+    }
+  ],
+  "current_aave_emode": 0,
+  "network": {
+    "chain_id": "84532",
+    "name": "Base Sepolia"
+  },
+  "read_only_contract": {
+    "allowed_keeperhub_tools": [
+      "get_wallet_integration",
+      "list_action_schemas",
+      "list_integrations",
+      "search_protocol_actions"
+    ],
+    "execution_invoked": false,
+    "keeperhub_tools_invoked": [
+      "list_integrations",
+      "get_wallet_integration",
+      "list_action_schemas",
+      "search_protocol_actions"
+    ],
+    "simulation_invoked": false
+  },
+  "schema": "proofpilot.doctor.v1",
+  "status": "READY",
+  "testnet_only": true,
+  "wallet_native_balance_eth": "0.015",
+  "write_performed": false
+}

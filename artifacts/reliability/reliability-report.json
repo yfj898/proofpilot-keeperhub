@@ -1,0 +1,209 @@
+{
+  "cases": [
+    {
+      "case_id": "wrong_chain",
+      "category": "semantic_admission",
+      "evidence": {
+        "failed_checks": [
+          "intent_chain"
+        ]
+      },
+      "expected_behavior": "Reject before any broadcast.",
+      "observed_behavior": "passed=False; failed_checks=['intent_chain']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "wrong_target",
+      "category": "semantic_admission",
+      "evidence": {
+        "failed_checks": [
+          "intent_target"
+        ]
+      },
+      "expected_behavior": "Reject before any broadcast.",
+      "observed_behavior": "passed=False; failed_checks=['intent_target']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "wrong_function",
+      "category": "semantic_admission",
+      "evidence": {
+        "failed_checks": [
+          "intent_function"
+        ]
+      },
+      "expected_behavior": "Reject before any broadcast.",
+      "observed_behavior": "passed=False; failed_checks=['intent_function']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "wrong_arguments",
+      "category": "semantic_admission",
+      "evidence": {
+        "failed_checks": [
+          "intent_arguments"
+        ]
+      },
+      "expected_behavior": "Reject before any broadcast.",
+      "observed_behavior": "passed=False; failed_checks=['intent_arguments']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "wrong_native_value",
+      "category": "semantic_admission",
+      "evidence": {
+        "failed_checks": [
+          "intent_native_value"
+        ]
+      },
+      "expected_behavior": "Reject before any broadcast.",
+      "observed_behavior": "passed=False; failed_checks=['intent_native_value']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "stale_state",
+      "category": "state_freshness",
+      "evidence": {
+        "failed_checks": [
+          "prebroadcast_fresh_aave.user_emode"
+        ]
+      },
+      "expected_behavior": "Fail closed when pre-broadcast state differs from the admitted snapshot.",
+      "observed_behavior": "passed=False; failed_checks=['prebroadcast_fresh_aave.user_emode']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "simulation_revert",
+      "category": "keeperhub_preflight",
+      "evidence": {
+        "failed_checks": [
+          "simulation_non_reverting"
+        ],
+        "simulation": {
+          "status": "simulated",
+          "success": true,
+          "wouldRevert": true
+        }
+      },
+      "expected_behavior": "Do not broadcast a transaction that simulation says would revert.",
+      "observed_behavior": "passed=False; failed_checks=['simulation_non_reverting']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "mcp_tool_error",
+      "category": "keeperhub_preflight",
+      "evidence": {
+        "error": "synthetic KeeperHub tool failure"
+      },
+      "expected_behavior": "KeeperHub/MCP tool errors fail closed and do not cross the write boundary.",
+      "observed_behavior": "approved=False; error=synthetic KeeperHub tool failure",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "duplicate_replay",
+      "category": "replay_containment",
+      "evidence": {
+        "failed_checks": [
+          "intent_not_replayed"
+        ]
+      },
+      "expected_behavior": "A consumed semantic intent cannot be consumed a second time.",
+      "observed_behavior": "passed=False; failed_checks=['intent_not_replayed']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "uncertain_execution_status",
+      "category": "execution_verification",
+      "evidence": {
+        "failed_checks": [
+          "execution_completed",
+          "transaction_hash",
+          "transaction_link",
+          "receipt_evidence"
+        ]
+      },
+      "expected_behavior": "Never claim execution success without a completed status and receipt evidence.",
+      "observed_behavior": "passed=False; failed_checks=['execution_completed', 'transaction_hash', 'transaction_link', 'receipt_evidence']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "receipt_failure",
+      "category": "independent_verification",
+      "evidence": {
+        "failed_checks": [
+          "independent_receipt_success"
+        ]
+      },
+      "expected_behavior": "A failed independent EVM receipt prevents VERIFIED status.",
+      "observed_behavior": "passed=False; failed_checks=['independent_receipt_success']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "postcondition_mismatch",
+      "category": "independent_verification",
+      "evidence": {
+        "failed_checks": [
+          "post_0_aave.user_emode"
+        ]
+      },
+      "expected_behavior": "A successful-looking execution cannot be VERIFIED when the intended state is absent.",
+      "observed_behavior": "passed=False; failed_checks=['post_0_aave.user_emode']",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "tampered_trace",
+      "category": "evidence_integrity",
+      "evidence": {},
+      "expected_behavior": "Any post-hoc mutation invalidates the trace digest.",
+      "observed_behavior": "tampered_trace_verified=False",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "live_verified_execution_trace",
+      "category": "live_evidence",
+      "evidence": {
+        "artifact": "artifacts/demo/proofpilot-safe-live-validation-trace-v2.json",
+        "trace_sha256": "4d553300e306fcfd547fe6bdf7cb54967cf0489d15f3625cbd095555451db133"
+      },
+      "expected_behavior": "Preserved live trace remains integrity-valid with final status VERIFIED.",
+      "observed_behavior": "integrity=True; final_status=VERIFIED; broadcast_attempted=True",
+      "passed": true,
+      "unsafe_broadcast": false
+    },
+    {
+      "case_id": "live_simulation_valid_attack_blocked",
+      "category": "live_evidence",
+      "evidence": {
+        "artifact": "artifacts/demo/proofpilot-attack-validation-trace-v2.json",
+        "trace_sha256": "3ba5e60f1693cd6966b78a2c709bd890ee821d3bd66e188f85e041103eca5ec3"
+      },
+      "expected_behavior": "Preserved live trace remains integrity-valid with final status BLOCKED.",
+      "observed_behavior": "integrity=True; final_status=BLOCKED; broadcast_attempted=False",
+      "passed": true,
+      "unsafe_broadcast": false
+    }
+  ],
+  "created_at": "2026-08-09T06:11:09.609122+00:00",
+  "definition": "Competition-facing fail-closed reliability matrix. Deterministic cases exercise semantic admission, preflight, replay, execution verification, independent outcome verification, and evidence integrity; live rows reference preserved Base Sepolia traces.",
+  "schema": "proofpilot.reliability-report.v1",
+  "summary": {
+    "failed_cases": 0,
+    "passed_cases": 15,
+    "total_cases": 15,
+    "unsafe_broadcasts": 0
+  },
+  "testnet_only": true
+}

@@ -1,0 +1,26 @@
+{
+  "all_required_tools_present": true,
+  "endpoint": "https://app.keeperhub.com/mcp",
+  "initialize_http_status": 200,
+  "negotiated_mcp_protocol": "2025-11-25",
+  "notes": [
+    "This check performs MCP initialize, tools/list, and list_integrations only.",
+    "It does not simulate, sign, submit, or broadcast a transaction.",
+    "No bearer token or integration credential is serialized into this report."
+  ],
+  "official_hosted_endpoint": true,
+  "required_tools": {
+    "execute_contract_call": true,
+    "execute_protocol_action": true,
+    "get_direct_execution_status": true,
+    "get_wallet_integration": true,
+    "list_action_schemas": true,
+    "list_integrations": true,
+    "search_protocol_actions": true,
+    "tools_documentation": true
+  },
+  "schema": "proofpilot.keeperhub-mcp-check.v1",
+  "tool_count": 35,
+  "wallet_integration_address_present": true,
+  "write_performed": false
+}

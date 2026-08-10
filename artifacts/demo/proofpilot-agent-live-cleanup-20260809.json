@@ -1,0 +1,246 @@
+{
+  "authorization": {
+    "freshness_check": {
+      "checks": [
+        {
+          "name": "prebroadcast_fresh_aave.user_emode",
+          "passed": true,
+          "reason": "State snapshot drifted at aave.user_emode: expected=1; observed=1."
+        }
+      ],
+      "observed_emode": 1,
+      "passed": true
+    },
+    "independent_semantic_deviations": [],
+    "intent_assurance": {
+      "checks": [
+        {
+          "name": "intent_chain",
+          "passed": true,
+          "reason": "Proposal chain_id=84532 does not match mandate chain_id=84532."
+        },
+        {
+          "name": "intent_action",
+          "passed": true,
+          "reason": "Proposal action=contract_call does not match mandate action=contract_call."
+        },
+        {
+          "name": "intent_target_shape",
+          "passed": true,
+          "reason": "Proposal target must be a valid 20-byte EVM address."
+        },
+        {
+          "name": "intent_target",
+          "passed": true,
+          "reason": "Proposal target differs from the mandated recipient/contract."
+        },
+        {
+          "name": "intent_function",
+          "passed": true,
+          "reason": "Proposal function 'setUserEMode(uint8)' does not match mandated function 'setUserEMode(uint8)'."
+        },
+        {
+          "name": "intent_native_value_valid",
+          "passed": true,
+          "reason": "Contract-call native value must be finite and non-negative."
+        },
+        {
+          "name": "intent_arguments",
+          "passed": true,
+          "reason": "Proposal arguments (0,) do not match mandated arguments (0,)."
+        },
+        {
+          "name": "intent_native_value",
+          "passed": true,
+          "reason": "Proposal native value 0 does not match mandated native value 0."
+        }
+      ],
+      "passed": true
+    },
+    "precondition_checks": [
+      {
+        "name": "pre_0_aave.user_emode",
+        "passed": true,
+        "reason": "pre condition failed: aave.user_emode eq 1; observed=1."
+      }
+    ]
+  },
+  "broadcast_attempted": true,
+  "context": {
+    "account": "0x4c3BFdf14C3E60ff736Df20f13B40923BF1cbab5",
+    "agent": {},
+    "keeperhub_mcp_connected": true,
+    "keeperhub_tool_count": 35,
+    "mode": "safe"
+  },
+  "created_at": "2026-08-09T07:53:45.655969+00:00",
+  "final_reason": "",
+  "final_status": "VERIFIED",
+  "intent": {
+    "commitment": "ec8053556a4d18f1d80aea3a00fc080b617d7c3cc855fe521093699069f307d9",
+    "ir": {
+      "abi_hash": "8a2355238111520c2d9fea306ee11e495205ad2c9ed6b9f1891666379127db7c",
+      "action": {
+        "arguments": [
+          0
+        ],
+        "function_signature": "setUserEMode(uint8)",
+        "native_value": "0",
+        "protocol": "aave",
+        "target": "0x8bAB6d1b75f19e9eD9fCe8b9BD338844fF79aE27"
+      },
+      "chain_id": "84532",
+      "compiler_version": "proofpilot-mandate-compiler/1",
+      "deadline": null,
+      "intent_id": "competition-demo-aave-emode-1786262025",
+      "invariants": [],
+      "metadata": {
+        "binding_profile": "aave_emode"
+      },
+      "nonce": 1786262025,
+      "parent_delegation_hash": "2dc54eeab365f0e4657b9d71aa0b4947d59d90598867e83cd4734e235c9e93d4",
+      "postconditions": [
+        {
+          "operator": "eq",
+          "path": "aave.user_emode",
+          "value": 0
+        }
+      ],
+      "preconditions": [],
+      "source_text": "Set my Aave E-Mode category exactly to 0",
+      "source_text_hash": "40cf346755d7536bd7de7d4e1f77f37ffef61b2f780e04703d0e4e901f5b0e5d"
+    },
+    "source_text": "Set my Aave E-Mode category exactly to 0",
+    "source_text_sha256": "40cf346755d7536bd7de7d4e1f77f37ffef61b2f780e04703d0e4e901f5b0e5d"
+  },
+  "keeperhub": {
+    "execution": {
+      "execution_id": "damqynns2ho98djctna2f",
+      "status": "completed",
+      "submission": {
+        "execution_id": "damqynns2ho98djctna2f",
+        "idempotency_key": "proofpilot-intent-5edd97f4-5d5d-4b41-a39e-e1c2ff7da534",
+        "status": "completed"
+      },
+      "terminal_check": {
+        "checks": [
+          {
+            "name": "execution_completed",
+            "passed": true,
+            "reason": "Execution status is not completed."
+          },
+          {
+            "name": "transaction_hash",
+            "passed": true,
+            "reason": "Transaction hash is missing."
+          },
+          {
+            "name": "transaction_link",
+            "passed": true,
+            "reason": "Transaction link is missing."
+          },
+          {
+            "name": "receipt_evidence",
+            "passed": true,
+            "reason": "Receipt evidence is present."
+          },
+          {
+            "name": "receipt_0_verified",
+            "passed": true,
+            "reason": "Receipt is not cryptographically/chain verified by the execution layer."
+          },
+          {
+            "name": "receipt_0_status",
+            "passed": true,
+            "reason": "receiptStatus='success'; expected 'success'."
+          }
+        ],
+        "passed": true
+      },
+      "transaction_hash": "0x848ca78e8bbde0f24563582a67b6c94bb53616de79218c5b29542d97bcf8860b",
+      "transaction_link": "https://sepolia.basescan.org/tx/0x848ca78e8bbde0f24563582a67b6c94bb53616de79218c5b29542d97bcf8860b"
+    },
+    "simulation": {
+      "from": "0x4c3bfdf14c3e60ff736df20f13b40923bf1cbab5",
+      "gasEstimate": "46317",
+      "simulatedReturnValue": null,
+      "status": "simulated",
+      "success": true,
+      "to": "0x8bAB6d1b75f19e9eD9fCe8b9BD338844fF79aE27",
+      "value": "0",
+      "wouldRevert": false
+    }
+  },
+  "network": {
+    "chain_id": "84532",
+    "name": "Base Sepolia"
+  },
+  "pre_state": {
+    "aave": {
+      "user_emode": 1
+    }
+  },
+  "proposal": {
+    "action": {
+      "action": "contract_call",
+      "arguments": [
+        0
+      ],
+      "chain_id": "84532",
+      "function_signature": "setUserEMode(uint8)",
+      "native_value": "0",
+      "target": "0x8bAB6d1b75f19e9eD9fCe8b9BD338844fF79aE27"
+    },
+    "sha256": "a80241044986dc398d28e23ff3801a43f70465aa5a26cbd66c332bb53ab8cef4"
+  },
+  "provenance": {
+    "compiler_version": "proofpilot-mandate-compiler/1",
+    "intent_commitment": "ec8053556a4d18f1d80aea3a00fc080b617d7c3cc855fe521093699069f307d9",
+    "write_path": "KeeperHub MCP execute_contract_call"
+  },
+  "schema": "proofpilot.execution-trace.v2",
+  "sha256": "b9593ff027b5f4f24e8f97f8b8b20442b458f4de42296aa3be1d64efef749f1c",
+  "testnet_only": true,
+  "trace_id": "pp_f0b453ff985d4c3a940f92f690bb685b",
+  "verification": {
+    "independent_receipt": {
+      "block_hash": "0x6dc9f0e6b608ea7fa618317e393ee0ccb95685d774a7c81150b66d07159d0734",
+      "block_number": "0x2b26998",
+      "checks": [
+        {
+          "name": "independent_receipt_hash",
+          "passed": true,
+          "reason": "Independent receipt transactionHash does not match KeeperHub evidence."
+        },
+        {
+          "name": "independent_receipt_success",
+          "passed": true,
+          "reason": "Independent receipt status='0x1'; expected successful EVM status."
+        },
+        {
+          "name": "independent_receipt_block",
+          "passed": true,
+          "reason": "Independent receipt is missing block inclusion evidence."
+        }
+      ],
+      "passed": true,
+      "status": "0x1",
+      "transaction_hash": "0x848ca78e8bbde0f24563582a67b6c94bb53616de79218c5b29542d97bcf8860b"
+    },
+    "post_state": {
+      "aave": {
+        "user_emode": 0
+      }
+    },
+    "postcondition_check": {
+      "checks": [
+        {
+          "name": "post_0_aave.user_emode",
+          "passed": true,
+          "reason": "post condition failed: aave.user_emode eq 0; observed=0."
+        }
+      ],
+      "passed": true
+    }
+  }
+}

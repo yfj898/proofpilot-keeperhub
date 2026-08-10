@@ -1,0 +1,210 @@
+{
+  "authorization": {
+    "execution_payload": {
+      "canonical": {
+        "abi_sha256": "8a2355238111520c2d9fea306ee11e495205ad2c9ed6b9f1891666379127db7c",
+        "chain_id": "84532",
+        "contract_address": "0x8bab6d1b75f19e9ed9fce8b9bd338844ff79ae27",
+        "function_args": "[1]",
+        "function_name": "setUserEMode",
+        "function_signature": "setUserEMode(uint8)",
+        "value": "0"
+      },
+      "commitment_match": true,
+      "sha256": "e943c5a5069627c58b72a5908e0bb741a631828ad90001076484a42d6de19e88"
+    },
+    "freshness_check": {},
+    "independent_semantic_deviations": [],
+    "intent_assurance": {
+      "checks": [
+        {
+          "name": "intent_chain",
+          "passed": true,
+          "reason": "Proposal chain_id=84532 does not match mandate chain_id=84532."
+        },
+        {
+          "name": "intent_action",
+          "passed": true,
+          "reason": "Proposal action=contract_call does not match mandate action=contract_call."
+        },
+        {
+          "name": "intent_target_shape",
+          "passed": true,
+          "reason": "Proposal target must be a valid 20-byte EVM address."
+        },
+        {
+          "name": "intent_target",
+          "passed": true,
+          "reason": "Proposal target differs from the mandated recipient/contract."
+        },
+        {
+          "name": "intent_function",
+          "passed": true,
+          "reason": "Proposal function 'setUserEMode(uint8)' does not match mandated function 'setUserEMode(uint8)'."
+        },
+        {
+          "name": "intent_native_value_valid",
+          "passed": true,
+          "reason": "Contract-call native value must be finite and non-negative."
+        },
+        {
+          "name": "intent_arguments",
+          "passed": true,
+          "reason": "Proposal arguments (1,) do not match mandated arguments (1,)."
+        },
+        {
+          "name": "intent_native_value",
+          "passed": true,
+          "reason": "Proposal native value 0 does not match mandated native value 0."
+        },
+        {
+          "name": "intent_forbidden_effects",
+          "passed": true,
+          "reason": "Proposal does not contain a forbidden semantic effect."
+        }
+      ],
+      "passed": true
+    },
+    "precondition_checks": [
+      {
+        "name": "pre_0_aave.user_emode",
+        "passed": true,
+        "reason": "pre condition failed: aave.user_emode eq 0; observed=0."
+      }
+    ]
+  },
+  "broadcast_attempted": false,
+  "context": {
+    "account": "0x4c3BFdf14C3E60ff736Df20f13B40923BF1cbab5",
+    "agent": {},
+    "execution_control": {
+      "authenticated_user_signature": false,
+      "broadcast_allowed": false,
+      "control_authority": "local_cli_operator",
+      "mode": "observe",
+      "reason": "Observe mode is simulation-only by construction.",
+      "requires_human_confirmation": false
+    },
+    "execution_mode": "observe",
+    "intent_preview": {
+      "action": "setUserEMode(uint8)",
+      "authorization_status": "UNVERIFIED_CANDIDATE",
+      "changes": [
+        {
+          "after": 1,
+          "before": 0,
+          "field": "Aave E-Mode category"
+        }
+      ],
+      "collateral_settings": "unchanged by this candidate action",
+      "execution_mode": "observe",
+      "native_eth": "0",
+      "network": "Base Sepolia",
+      "protocol": "Aave V3",
+      "semantic_effects": [
+        "aave.user_emode"
+      ],
+      "target_contract": "0x8bAB6d1b75f19e9eD9fCe8b9BD338844fF79aE27",
+      "token_transfer": "none",
+      "user_intent": "Set my Aave E-Mode category exactly to 1. Do not change collateral settings. Attach no native ETH."
+    },
+    "keeperhub_mcp_connected": true,
+    "keeperhub_tool_count": 35,
+    "mode": "safe",
+    "verification_profile": "authorization_to_execution_v1"
+  },
+  "created_at": "2026-08-09T11:51:25.307908+00:00",
+  "final_reason": "",
+  "final_status": "SIMULATED",
+  "intent": {
+    "commitment": "b5798bda3379a763ae258216a661217860a89328eccfde2198199c7ad1e92c93",
+    "ir": {
+      "abi_hash": "8a2355238111520c2d9fea306ee11e495205ad2c9ed6b9f1891666379127db7c",
+      "action": {
+        "arguments": [
+          1
+        ],
+        "function_signature": "setUserEMode(uint8)",
+        "native_value": "0",
+        "protocol": "aave",
+        "target": "0x8bAB6d1b75f19e9eD9fCe8b9BD338844fF79aE27"
+      },
+      "chain_id": "84532",
+      "compiler_version": "proofpilot-mandate-compiler/1",
+      "deadline": null,
+      "intent_id": "competition-demo-aave-emode-1786276285",
+      "invariants": [],
+      "metadata": {
+        "binding_profile": "aave_emode",
+        "forbidden_effects": [
+          "aave.collateral_configuration"
+        ]
+      },
+      "nonce": 1786276285,
+      "parent_delegation_hash": "2dc54eeab365f0e4657b9d71aa0b4947d59d90598867e83cd4734e235c9e93d4",
+      "postconditions": [
+        {
+          "operator": "eq",
+          "path": "aave.user_emode",
+          "value": 1
+        }
+      ],
+      "preconditions": [],
+      "source_text": "Set my Aave E-Mode category exactly to 1. Do not change collateral settings. Attach no native ETH.",
+      "source_text_hash": "c1bccf6d4164131c2f25d54372186fa21f2b467a9414ad61e4008a9a72f37c7b"
+    },
+    "source_text": "Set my Aave E-Mode category exactly to 1. Do not change collateral settings. Attach no native ETH.",
+    "source_text_sha256": "c1bccf6d4164131c2f25d54372186fa21f2b467a9414ad61e4008a9a72f37c7b"
+  },
+  "keeperhub": {
+    "execution": {},
+    "simulation": {
+      "from": "0x4c3bfdf14c3e60ff736df20f13b40923bf1cbab5",
+      "gasEstimate": "66636",
+      "simulatedReturnValue": null,
+      "status": "simulated",
+      "success": true,
+      "to": "0x8bab6d1b75f19e9ed9fce8b9bd338844ff79ae27",
+      "value": "0",
+      "wouldRevert": false
+    }
+  },
+  "network": {
+    "chain_id": "84532",
+    "name": "Base Sepolia"
+  },
+  "pre_state": {
+    "aave": {
+      "user_emode": 0
+    }
+  },
+  "proposal": {
+    "action": {
+      "action": "contract_call",
+      "arguments": [
+        1
+      ],
+      "chain_id": "84532",
+      "function_signature": "setUserEMode(uint8)",
+      "native_value": "0",
+      "target": "0x8bAB6d1b75f19e9eD9fCe8b9BD338844fF79aE27"
+    },
+    "sha256": "10f6eae205ad106c572216c57eaa59525dfda88327b3dae559a425a7c6c689f5"
+  },
+  "provenance": {
+    "compiler_version": "proofpilot-mandate-compiler/1",
+    "intent_commitment": "b5798bda3379a763ae258216a661217860a89328eccfde2198199c7ad1e92c93",
+    "write_path": "KeeperHub MCP execute_contract_call"
+  },
+  "schema": "proofpilot.execution-trace.v2",
+  "sha256": "c1cd2fed233f4b4ad5a362361e66a7a09599e1cf7ed350fb044f771d6afe2bff",
+  "testnet_only": true,
+  "trace_id": "pp_aefb16fafc6c4ba0b14010f97b825ecf",
+  "verification": {
+    "execution_binding": {},
+    "independent_receipt": {},
+    "level": "",
+    "post_state": {},
+    "postcondition_check": {}
+  }
+}

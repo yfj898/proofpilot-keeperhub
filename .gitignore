@@ -1,0 +1,10 @@
+.env
+keeperhub-backup-codes.txt
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.proofpilot/
+artifacts/gate0/*.json
+!artifacts/gate0/README.md
+
