@@ -26,6 +26,10 @@ frozen benchmark, then explain the architecture in one compact closing frame.
 
 Before pressing record:
 
+**Automated option:** `scripts/record_final_demo.py` implements this exact 2:45 evidence-first cut
+with deterministic browser scene switching and OBS WebSocket start/stop control. Run
+`python scripts/record_final_demo.py --doctor` first, then follow `docs/RECORDING_AGENT.md`.
+
 1. Open the public GitHub repository: `https://github.com/yfj898/proofpilot-keeperhub`.
 2. Open a terminal at the clean submission export root with a large readable font.
 3. Pre-open the primary BaseScan transaction:
