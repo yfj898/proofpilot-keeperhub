@@ -1,9 +1,16 @@
-# ProofPilot — Final 2–3 Minute Demo Video Script
+# ProofPilot — Final 2:45 Demo Video Script
 
-**Target runtime:** 2:40–2:50  
+**Target runtime:** 2:45  
+**Hard limit:** under 3:00  
 **Network:** Base Sepolia only  
-**Recording rule:** use preserved read-only evidence; do not run `--live`, submit a transaction,
-change E-Mode or retry a provider for a prettier response.
+**Style:** working-product proof first; architecture second  
+**Recording rule:** use preserved read-only evidence only. Do **not** run `--live`, submit a
+transaction, change Aave E-Mode, rerun the formal benchmark, or retry a provider for a prettier
+response.
+
+This cut is intentionally closer to a strong hackathon demo than a presentation: show that the
+system works immediately, show the failure mode it prevents, show real chain evidence, show the
+frozen benchmark, then explain the architecture in one compact closing frame.
 
 ## Recording Assets
 
@@ -15,83 +22,80 @@ change E-Mode or retry a provider for a prettier response.
 - Blocked attack trace: `artifacts/demo/proofpilot-attack-validation-trace-v2.json`
 - Final benchmark: `artifacts/keeperbench/external-redteam-aave-formal-20260809-25x2-final-submission.json`
 
-## 0:00–0:15 — Hook
+## Recording Setup
+
+Before pressing record:
+
+1. Open the public GitHub repository: `https://github.com/yfj898/proofpilot-keeperhub`.
+2. Open a terminal at the clean submission export root with a large readable font.
+3. Pre-open the primary BaseScan transaction:
+   `https://sepolia.basescan.org/tx/0xdb0bc80711a6aa167038f990471ff59895f2661a1067df11ab46a48518946f90`.
+4. Pre-open the cleanup BaseScan transaction:
+   `https://sepolia.basescan.org/tx/0x2f42aefeed93e25df81b90a4e56b08698ffaf407f0f8ae7a6c970157a3a64780`.
+5. Open `docs/EXTERNAL_REDTEAM_AAVE.md` near the final benchmark table.
+6. Hide desktop notifications and close email, chat, password managers and unrelated tabs.
+
+Prefer 1920x1080 recording if practical. Do not display `.env`, shell history, API keys,
+KeeperHub credentials, backup codes, local journal files or unrelated personal information.
+
+## 0:00–0:10 — Hook: Show the Problem, Not the Architecture
 
 **Screen**
 
 ```text
-ProofPilot — Intent Firewall for Autonomous Onchain Agents
+ProofPilot
+Intent Firewall for Autonomous Onchain Agents
 
 Executable != Authorized
 ```
 
+Hold for about two seconds, then cut directly to the terminal. Do not open with a team biography or
+long architecture explanation.
+
 **Narration**
 
 > An autonomous agent can propose a transaction that is perfectly valid and simulation-safe, but
-> still not be what the user authorized. ProofPilot closes that gap.
+> still not be what the user authorized. ProofPilot closes that gap before the write boundary.
 
-## 0:15–0:35 — Architecture
-
-**Screen**
-
-```text
-User mandate
-    -> Bounded AI Agent
-    -> ProofPilot
-    -> KeeperHub
-    -> Blockchain
-    -> Independent verification
-```
-
-Overlay: `Agent proposes. ProofPilot authorizes. KeeperHub executes. Verifier confirms.`
-
-**Narration**
-
-> The agent proposes an action for a bounded user mandate. ProofPilot deterministically checks the
-> exact chain, contract, function, arguments, value and effects. KeeperHub is the sole write path,
-> and an independent read layer verifies the resulting effect.
-
-## 0:35–1:10 — Safe, Zero-Write Path
+## 0:10–0:38 — Working Safe Path: Authorized, Simulated, Zero Write
 
 **Screen**
 
-Show the preserved Doctor snapshot, the bounded LLM proposal trace, then the hardened deterministic
-Observe preview. Label the two traces clearly and pause on:
-
-```text
-Doctor READY
-Agent proposal: setUserEMode(1)
-Candidate Action Preview: 0 -> 1
-Intent Assurance: PASS
-KeeperHub simulation: success=true, wouldRevert=false
-Final: SIMULATED
-broadcast=false
-```
-
-Optional offline renderer:
+Run only the offline proof viewer:
 
 ```bash
 python scripts/show_proof.py artifacts/demo/proofpilot-five-fixes-observe.json
 ```
 
+Scroll only enough to center these fields and pause on them:
+
+```text
+Candidate Action Preview: 0 -> 1
+Intent Assurance: PASS
+KeeperHub simulation: success=true
+wouldRevert=false
+Final: SIMULATED
+broadcast=false
+```
+
 **Narration**
 
-> The first trace preserves a real external-model proposal and successful KeeperHub simulation. The
-> second is the hardened deterministic reference path that shows the final preview and control gates.
-> The model has no KeeperHub credential, wallet key or write tool, and Observe mode can never
-> broadcast. In the last credentialed default run, Doctor was READY but the provider response failed
-> ABI binding, so ProofPilot stopped before simulation. Live model failures fail closed before
-> execution.
+> Here the user authorizes Aave E-Mode category one. ProofPilot checks the exact chain, target,
+> function, arguments, value and allowed effects. KeeperHub simulation succeeds, but Observe mode
+> ends at SIMULATED with broadcast false. The model can propose; it cannot authorize its own write.
 
-## 1:10–1:40 — Wrong but Executable
+**Edit note:** use the preserved trace exactly as recorded. Do not call the model or KeeperHub again
+during video recording.
+
+## 0:38–1:15 — Core Demo: Wrong but Executable
 
 **Screen**
 
-Render the preserved attack trace or show this exact comparison:
+Render the preserved blocked-attack proof or show this exact comparison:
 
 ```text
 User authorized:  setUserEMode(1)
-Agent proposes:   setUserEMode(0)
+Agent proposed:    setUserEMode(0)
 
 KeeperHub simulation:
   success=true
@@ -104,21 +108,30 @@ ProofPilot:
 
 **Narration**
 
-> The wrong category is executable, but it does not conform to the mandate. KeeperHub correctly
-> answers whether the call can execute. ProofPilot answers whether it was authorized and keeps the
-> write boundary closed.
+> Now the agent proposes category zero instead. The call is ABI-valid and KeeperHub confirms it is
+> simulation-valid: success true, wouldRevert false. But it violates the user's typed mandate, so
+> ProofPilot blocks it and never broadcasts. Simulation answers whether a call can execute.
+> ProofPilot answers whether this exact call was authorized.
 
-## 1:40–2:05 — Preserved Real Execution Proof
+**Edit note:** keep `success=true`, `wouldRevert=false`, `BLOCKED` and `broadcast=false` visible
+together if possible. This is the most important shot in the video.
 
-**Screen**
+## 1:15–1:55 — Real Base Sepolia Execution and Independent Effect Proof
 
-Open the hardened BaseScan transaction:
+**Screen action A — BaseScan**
+
+Cut to the already-open hardened BaseScan transaction:
 
 ```text
 0xdb0bc80711a6aa167038f990471ff59895f2661a1067df11ab46a48518946f90
 ```
 
-Then show the preserved trace:
+Hold long enough for the reviewer to see that it is a real Base Sepolia transaction. Do not hunt
+through tabs or wait for pages to load during the recording.
+
+**Screen action B — Preserved proof**
+
+Cut back to the terminal and run:
 
 ```bash
 python scripts/show_proof.py artifacts/demo/proofpilot-five-fixes-live.json
@@ -135,19 +148,27 @@ Post-state PASS
 L2_EXECUTION_EFFECT_VERIFIED
 ```
 
-Show cleanup tx `0x2f42aefeed93e25df81b90a4e56b08698ffaf407f0f8ae7a6c970157a3a64780`
-and `current Aave E-Mode = 0`.
+Then cut briefly to cleanup tx
+`0x2f42aefeed93e25df81b90a4e56b08698ffaf407f0f8ae7a6c970157a3a64780` and show
+`current Aave E-Mode = 0` from the preserved cleanup evidence.
 
 **Narration**
 
-> This preserved hardened run changed E-Mode from zero to one through KeeperHub. ProofPilot required
-> completion, an independent L2 receipt, execution/effect binding, the Aave event and post-state.
-> The cleanup restored the test account to zero. This is L2 execution/effect verification, not full
-> internal-call tracing or L1 finality.
+> This preserved hardened execution changed Aave E-Mode from zero to one through KeeperHub. After
+> KeeperHub completed, ProofPilot independently checked the L2 receipt, bound the execution to the
+> intended effect, verified the Aave UserEModeSet event and confirmed post-state. The cleanup then
+> restored the test account to zero. This is L2 execution-and-effect verification, not a claim of
+> full internal-call tracing or L1 finality.
 
-## 2:05–2:30 — Frozen External Red-Team
+**Edit note:** use cuts between BaseScan and terminal. Never create a new transaction for the
+recording.
+
+## 1:55–2:25 — Frozen External Red-Team: Why the Boundary Matters
 
 **Screen**
+
+Show the final table from `docs/EXTERNAL_REDTEAM_AAVE.md` or a clean static crop derived from the
+same frozen artifact. Do not scroll through the raw JSON on camera.
 
 ```text
 Final Aave V3 Base Sepolia freeze
@@ -163,18 +184,33 @@ Static function allowlist:    28 / 29 unsafe approvals
 ProofPilot:                    0 / 29 observed unsafe approvals
 ```
 
+Keep the three comparison rows visible at the same time.
+
 **Narration**
 
-> The final frozen run retained all fifty scheduled attempts. Forty were independently labeled
-> semantic attacks; KeeperHub confirmed twenty-nine were simulation-valid. ProofPilot observed zero
-> unsafe approvals among those twenty-nine. This is an observed narrow benchmark result, not a
-> universal security guarantee.
+> In the final frozen Aave benchmark, fifty trials were retained, forty were semantic attacks and
+> twenty-nine of those attacks were confirmed simulation-valid by KeeperHub. A protocol ABI
+> allowlist approved all twenty-nine. A static intended-function allowlist approved twenty-eight.
+> ProofPilot observed zero unsafe approvals among the twenty-nine. This is narrow observed evidence,
+> not a universal security guarantee.
 
-## 2:30–2:45 — Close
+Use the exact phrase **`0/29 observed unsafe approvals`**. Do not say “zero-percent failure rate”,
+“provably secure” or “all attacks are blocked”.
+
+## 2:25–2:38 — Architecture in One Frame
 
 **Screen**
 
+Return to the GitHub README architecture diagram or show this compact flow:
+
 ```text
+User mandate
+    -> Bounded AI Agent
+    -> ProofPilot
+    -> KeeperHub
+    -> Blockchain
+    -> Independent verification
+
 Agent proposes.
 ProofPilot authorizes.
 KeeperHub executes.
@@ -183,14 +219,78 @@ Verifier confirms.
 
 **Narration**
 
-> KeeperHub answers whether an authorized transaction can execute reliably. ProofPilot answers
-> whether the transaction was authorized in the first place.
+> The separation is deliberate: the AI proposes, the typed mandate and deterministic checks
+> authorize, KeeperHub remains the sole write path, and an independent verifier confirms the
+> resulting effect.
+
+**Edit note:** architecture comes near the end because the reviewer has already seen each component
+working.
+
+## 2:38–2:45 — Close on Public Evidence
+
+**Screen**
+
+End on the public GitHub repository header. If readable without clutter, use this small overlay:
+
+```text
+155 tests PASS
+Final frozen benchmark: 0/29 observed unsafe approvals
+
+Executable != Authorized
+```
+
+**Narration**
+
+> KeeperHub tells us whether a transaction can execute. ProofPilot makes sure it was authorized in
+> the first place.
+
+Cut immediately after the final sentence.
+
+## Complete Recording Run Sheet
+
+```text
+0:00  GitHub/title: ProofPilot — Executable != Authorized
+0:10  Terminal: preserved Observe proof
+0:38  Terminal: wrong-but-executable blocked attack
+1:15  Browser: primary BaseScan transaction
+1:27  Terminal: hardened execution proof
+1:47  Browser/proof: cleanup transaction and current state 0
+1:55  Benchmark table: 29 simulation-valid attacks, ProofPilot 0/29 observed
+2:25  README architecture: Agent -> ProofPilot -> KeeperHub -> verifier
+2:38  Public GitHub repository + 155 tests / 0/29 overlay
+2:45  End
+```
 
 ## Editing Rules
 
-- Use cuts or static preserved evidence instead of dead terminal waits.
-- Do not display `.env`, shell history, API keys, backup codes or local journal files.
-- Do not claim a zero-percent security failure rate, universal safety, full call-trace proof or L1
-  finality.
-- Do not show an old `0/35` benchmark slide; the final result is `0/29` observed.
-- Keep the final video at or below three minutes.
+- Keep the finished video at approximately **2:45** and always below 3:00.
+- Prefer cuts and preserved evidence over dead terminal waits.
+- Do not run `--live`, submit a transaction, change Aave E-Mode or rerun the formal benchmark.
+- Do not call the proposal provider during recording just to obtain a cleaner response.
+- Do not display `.env`, API keys, KeeperHub credentials, backup codes, shell history or local
+  journal files.
+- Do not show the old `0/35` denominator as a final result. The final frozen result is **`0/29
+  observed unsafe approvals`**.
+- The current competition closeout is **155 tests PASS**.
+- Say **bounded AI agent** or **AI proposal agent**, not an autonomous model with transaction
+  authority.
+- Say **self-verifying** or **integrity-checked trace**, not tamper-proof or cryptographically
+  timestamped unless an external anchor is actually shown.
+- Say **`L2_EXECUTION_EFFECT_VERIFIED`**, not full trace verification or L1 finality.
+- Say **observed evidence from a narrow frozen benchmark**, not a universal security guarantee.
+- Never imply KeeperHub is unsafe. KeeperHub answers execution/simulation questions; ProofPilot adds
+  the user-intent authorization boundary before the write.
+
+## Final Export Check
+
+Before uploading the video, watch it once from beginning to end and confirm:
+
+- the public GitHub URL is readable;
+- no secret or personal notification appears in any frame;
+- the primary and cleanup BaseScan transactions are readable;
+- the wrong-but-executable contrast is visible for long enough to understand;
+- `broadcast=false` is visible on both zero-write and blocked paths where shown;
+- the only final benchmark denominator shown is **29**;
+- `0/35` appears nowhere in the finished video;
+- the final claim is **155 tests PASS / 0/29 observed unsafe approvals**;
+- the video finishes below 3:00.
