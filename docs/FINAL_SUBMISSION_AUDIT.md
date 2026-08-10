@@ -21,7 +21,7 @@
 | Current Aave E-Mode | **0** |
 | README / DoraHacks copy / video script | **READY / READY / READY** |
 | Clean GitHub export | **READY** |
-| GitHub URL / demo video URL | **MISSING / MISSING** |
+| GitHub URL / demo video URL | **READY / MISSING** |
 
 ## P0
 
@@ -106,9 +106,8 @@ artifact; the run was not repeated or resampled.
   benchmark links are ready.
 - `scripts/create_submission_export.py` created the allowlisted public tree at
   `/media/bili-guo/1235578e-e896-4ce5-9fdc-6318e4960f4c2/any/proofpilot-submission-export`.
-- Strict export hygiene passed. The export has local Git metadata and all public files are staged;
-  no commit, remote or fabricated URL was created.
-- **SUBMISSION BLOCKER: URL NOT PROVIDED — `<ADD_GITHUB_URL_BEFORE_SUBMISSION>`.**
+- Strict export hygiene passed. The clean export is committed on `main` and published at
+  <https://github.com/yfj898/proofpilot-keeperhub>.
 - **SUBMISSION BLOCKER: URL NOT PROVIDED — `<ADD_DEMO_VIDEO_URL_BEFORE_SUBMISSION>`.**
 
 ## Final Decision
@@ -117,6 +116,6 @@ artifact; the run was not repeated or resampled.
 are closed, evidence is internally consistent, the current benchmark is honestly frozen at 0/29,
 and Aave state is restored to 0.
 
-**Submission status: NOT READY** only because the real public repository and demo video URLs have
-not been provided. Do not invent them. After replacing those two placeholders and manually checking
-the DoraHacks form, stop development and submit; no further feature work is justified.
+**Submission status: NOT READY** only because the real demo video URL has not been provided. After
+replacing that final placeholder and manually checking the DoraHacks form, stop development and
+submit; no further feature work is justified.

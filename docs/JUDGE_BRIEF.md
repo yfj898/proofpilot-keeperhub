@@ -67,8 +67,8 @@ Artifact `c88901d6…46ef`、defender `68fda657…527e`、harness `d742351c…d4
 3. **Compiler fixed**：显式 wrong chain、deadline、conditional、conflict、from/to ambiguity 和 negation均 consume-or-reject。
 4. **Claims narrowed**：项目是 multi-protocol prototype；trace 是 self-verifying；证据等级是 `L2_EXECUTION_EFFECT_VERIFIED`，不是 full trace/L1 finality。
 5. **Reproducibility**：155 tests、compileall PASS。最近一次 credentialed Observe demo 的 Doctor READY，但 provider proposal 在 simulation 前 fail-closed，broadcast=false。
-6. **SUBMISSION BLOCKER**：`<ADD_GITHUB_URL_BEFORE_SUBMISSION>` 与
-   `<ADD_DEMO_VIDEO_URL_BEFORE_SUBMISSION>` 尚未替换；不得伪造。
+6. **Submission links**：公开仓库已发布至 <https://github.com/yfj898/proofpilot-keeperhub>；
+   **唯一剩余 blocker** 是 `<ADD_DEMO_VIDEO_URL_BEFORE_SUBMISSION>`，不得伪造。
 
 ## Judge Decision
 

@@ -126,7 +126,7 @@ integrity-checked `proofpilot.execution-trace.v2` for offline review.
 
 ## Submission Links
 
-- **Repository:** `<ADD_GITHUB_URL_BEFORE_SUBMISSION>`
+- **Repository:** <https://github.com/yfj898/proofpilot-keeperhub>
 - **Demo video:** `<ADD_DEMO_VIDEO_URL_BEFORE_SUBMISSION>`
 - **Primary transaction:** <https://sepolia.basescan.org/tx/0xdb0bc80711a6aa167038f990471ff59895f2661a1067df11ab46a48518946f90>
 - **Architecture:** `docs/ARCHITECTURE.md`
